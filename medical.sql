@@ -25,6 +25,16 @@ CREATE TABLE diseases
     description TEXT,
 );
 
+CREATE TABLE visits
+(
+    id SERIAL PRIMARY KEY,
+    doctor_id INTEGER NOT NULL,
+    patient_id INTEGER NOT NULL,
+    FOREIGN KEY (doctor_id) REFERENCES doctors (id),
+    FOREIGN KEY (patient_id) REFERENCES patients (id),
+    date TEXT NOT NULL
+);
+
 CREATE TABLE diagnoses
 (
     id SERIAL PRIMARY KEY,
@@ -33,14 +43,4 @@ CREATE TABLE diagnoses
     FOREIGN KEY (visit_id) REFERENCES visits (id),
     FOREIGN KEY (disease_id) REFERENCES diseases (id),
     notes TEXT
-);
-
-CREATE TABLE visits
-(
-    id SERIAL PRIMARY KEY,
-    doctor_id INTEGER NOT NULL,
-    patient_id INTEGER NOT NULL,
-    FOREIGN KEY (doctor_id) REFERENCES doctors (id),
-    FOREIGN KEY (patient_id) REFERENCES patiens (id),
-    date TEXT NOT NULL
 );
