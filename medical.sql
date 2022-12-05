@@ -22,7 +22,7 @@ CREATE TABLE diseases
 (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    description TEXT,
+    description TEXT
 );
 
 CREATE TABLE visits
