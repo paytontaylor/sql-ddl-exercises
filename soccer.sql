@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS soccer_db;
 
 CREATE DATABASE soccer_db;
 
-\c
+\c soccer_db
 
 CREATE TABLE teams 
 (
@@ -37,9 +37,12 @@ CREATE TABLE matches
     head_referee_id INTEGER NOT NULL,
     assistant_referee_1_id INTEGER NOT NULL,
     assistant_referee_2_id INTEGER NOT NULL,
-    FOREIGN KEY (home_team_id, away_team_id) REFERENCES teams (id),
+    FOREIGN KEY (home_team_id) REFERENCES teams (id),
+    FOREIGN KEY (away_team_id) REFERENCES teams (id),
     FOREIGN KEY (season_id) REFERENCES seasons (id),
-    FOREIGN KEY (head_referee_id, assistant_referee_1_id, assistant_referee_2_id) REFERENCES referees (id),
+    FOREIGN KEY (head_referee_id) REFERENCES referees (id),
+    FOREIGN KEY (assistant_referee_1_id) REFERENCES referees (id),
+    FOREIGN KEY (assistant_referee_2_id) REFERENCES referees (id)
 );
 
 CREATE TABLE players
